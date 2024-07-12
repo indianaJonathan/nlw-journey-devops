@@ -20,5 +20,11 @@ jobs:
           SHA=$(echo $GITHUB_SHA | head -c7)
           echo "sha=$SHA" >> $GITHUB_OUTPUT
 
+      - name: Login into the container register
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build Docker image
-        run: docker build -t indianajou/nlw-journey-devops:${{ steps.generate_sha.outputs.sha }} .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nlw-journey-devops:${{ steps.generate_sha.outputs.sha }} .
