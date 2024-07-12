@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker run -t indianajou/nlw-journey-devops:latest .
+        run: docker build -t indianajou/nlw-journey-devops:latest .
